@@ -118,15 +118,17 @@ SERPAPI_KEY=your_key_here
 ```
 
 ### 4. Running the Application
-**Terminal 1 (Backend):**
+**Terminal 1 (Backend API):**
 ```bash
-uvicorn main:app --reload
+uvicorn main:app --port 8001 --reload
 ```
+*API is accessible at `http://localhost:8001` (Interactive docs: `http://localhost:8001/docs`).*
 
-**Terminal 2 (Frontend):**
+**Terminal 2 (Frontend Dashboard):**
 ```bash
 streamlit run app.py
 ```
+*Dashboard is accessible at `http://localhost:8501`. (Configure custom backend URL via `API_URL` env variable if needed).*
 
 ### 5. Running Benchmark Evaluation
 ```bash
