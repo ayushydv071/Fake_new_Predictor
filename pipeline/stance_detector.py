@@ -16,16 +16,16 @@ nli_pipeline = pipeline(
 # Candidate labels for zero-shot classification — these labels must form
 # natural sentences when inserted into the hypothesis_template via {}.
 CANDIDATE_LABELS = [
-    "supports this claim",
-    "contradicts this claim",
-    "is unrelated to this claim",
+    "supports",
+    "contradicts",
+    "is unrelated to",
 ]
 
 # Map the candidate labels back to pipeline stance labels
 LABEL_TO_STANCE = {
-    "supports this claim": "SUPPORTS",
-    "contradicts this claim": "REFUTES",
-    "is unrelated to this claim": "NEUTRAL",
+    "supports": "SUPPORTS",
+    "contradicts": "REFUTES",
+    "is unrelated to": "NEUTRAL",
 }
 
 
@@ -44,7 +44,7 @@ def classify_stance(premise: str, hypothesis: str) -> tuple[str, float]:
         result = nli_pipeline(
             premise,
             candidate_labels=CANDIDATE_LABELS,
-            hypothesis_template="This text {}.",
+            hypothesis_template=f"This text {{}} the claim: {hypothesis}.",
             multi_label=False,
         )
 

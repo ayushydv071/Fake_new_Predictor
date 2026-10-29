@@ -5,10 +5,6 @@ Evaluates pipeline performance on 15 benchmark test cases.
 Computes Accuracy, Precision, Recall, F1-Score, and Confusion Matrix.
 """
 
-import sys
-import os
-import json
-from collections import Counter
 from sklearn.metrics import classification_report, confusion_matrix, accuracy_score, precision_recall_fscore_support
 
 # Direct pipeline imports

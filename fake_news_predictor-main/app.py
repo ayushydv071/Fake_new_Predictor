@@ -4,13 +4,14 @@ Fake News Detector — Streamlit Frontend
 Clean, minimal UI for the fake news detection pipeline.
 """
 
+import os
 import streamlit as st
 import requests
 import html
 
 # ── Config ───────────────────────────────────────────────────────────────────
 
-API_URL = "http://localhost:8000"
+API_URL = os.getenv("API_URL", "http://localhost:8001")
 
 VERDICT_COLORS = {
     "REAL": "#10B981",
@@ -38,7 +39,7 @@ st.markdown("""
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
-    html, body, [class*="st-"] {
+    html, body {
         font-family: 'Inter', sans-serif;
     }
 
@@ -296,7 +297,7 @@ if submitted:
                             )
 
             except requests.exceptions.ConnectionError:
-                st.error("Cannot connect to the backend. Make sure the API is running at http://localhost:8000")
+                st.error(f"Cannot connect to the backend. Make sure the API is running at {API_URL}")
             except requests.exceptions.Timeout:
                 st.error("Request timed out. The analysis is taking too long.")
             except Exception as e:
